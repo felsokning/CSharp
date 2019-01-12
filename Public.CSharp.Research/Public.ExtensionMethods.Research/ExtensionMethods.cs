@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="TestInternalFactory.cs" company="None">
+// <copyright file="ExtensionMethods.cs" company="None">
 //     Copyright (c) felsokning. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
