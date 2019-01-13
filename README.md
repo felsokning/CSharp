@@ -62,7 +62,7 @@ PowerShell Command (Debug-LiveProcess) written to dump the threads from a live p
 
 Example (redacted for brevity):
 ```
-PS C:\Users\John> Debug-LiveProcess -Process 9992
+Debug-LiveProcess -Process 9992
 18DC
   a3b787ce88            0 mscorlib [HelperMethodFrame_1OBJ] (System.Threading.WaitHandle.WaitOneNative)
   a3b787cfb0 7ffacb07efdb mscorlib System.Threading.WaitHandle.InternalWaitOne(System.Runtime.InteropServices.SafeHandle, Int64, Boolean, Boolean)
