@@ -60,6 +60,49 @@ Debug-DumpFile -FilePath "C:\Users\Public\Downloads\Dumps\13.Jan.2019_19.18_powe
 ### DebugLiveProcess
 PowerShell Command (Debug-LiveProcess) written to dump the threads from a live process.
 
+Example (redacted for brevity):
+```
+PS C:\Users\John> Debug-LiveProcess -Process 9992
+18DC
+  a3b787ce88            0 mscorlib [HelperMethodFrame_1OBJ] (System.Threading.WaitHandle.WaitOneNative)
+  a3b787cfb0 7ffacb07efdb mscorlib System.Threading.WaitHandle.InternalWaitOne(System.Runtime.InteropServices.SafeHandle, Int64, Boolean, Boolean)
+  a3b787cfe0 7ffacb07efae mscorlib System.Threading.WaitHandle.WaitOne(Int32, Boolean)
+  a3b787d020 7ffac1c46b33 System.Management.Automation System.Management.Automation.Runspaces.PipelineBase.Invoke(System.Collections.IEnumerable)
+  a3b787d060 7ffac1dde7be System.Management.Automation System.Management.Automation.PowerShell+Worker.ConstructPipelineAndDoWork(System.Management.Automation.Runspaces.Runspace, Boolean)
+  a3b787d130 7ffac1dde1dd System.Management.Automation System.Management.Automation.PowerShell+Worker.CreateRunspaceIfNeededAndDoWork(System.Management.Automation.Runspaces.Runspace, Boolean)
+  a3b787d1a0 7ffac1c95048 System.Management.Automation System.Management.Automation.PowerShell.CoreInvokeHelper[[System.__Canon, mscorlib],[System.__Canon, mscorlib]](System.Management.Automation.PSDataCollection`1<System.__Canon>, System.Management.Automation.PSDataCollection`1<System.__Canon>, System.Management.Automation.PSInvocationSettings)
+  a3b787d210 7ffac1c9555a System.Management.Automation System.Management.Automation.PowerShell.CoreInvoke[[System.__Canon, mscorlib],[System.__Canon, mscorlib]](System.Management.Automation.PSDataCollection`1<System.__Canon>, System.Management.Automation.PSDataCollection`1<System.__Canon>, System.Management.Automation.PSInvocationSettings)
+  a3b787d290 7ffac1c9256e System.Management.Automation System.Management.Automation.PowerShell.Invoke(System.Collections.IEnumerable, System.Management.Automation.PSInvocationSettings)
+  a3b787d2f0 7ffaa2320816 Microsoft.PowerShell.ConsoleHost Microsoft.PowerShell.ConsoleHostUserInterface.TryInvokeUserDefinedReadLine(System.String ByRef)
+  a3b787d350 7ffaa2320018 Microsoft.PowerShell.ConsoleHost Microsoft.PowerShell.ConsoleHostUserInterface.ReadLineWithTabCompletion(Microsoft.PowerShell.Executor)
+  a3b787d410 7ffaa2323e32 Microsoft.PowerShell.ConsoleHost Microsoft.PowerShell.ConsoleHost+InputLoop.Run(Boolean)
+  a3b787d4c0 7ffaa23239fd Microsoft.PowerShell.ConsoleHost Microsoft.PowerShell.ConsoleHost+InputLoop.RunNewInputLoop(Microsoft.PowerShell.ConsoleHost, Boolean)
+  a3b787d510 7ffaa2317429 Microsoft.PowerShell.ConsoleHost Microsoft.PowerShell.ConsoleHost.EnterNestedPrompt()
+  a3b787d570 7ffaa231831c Microsoft.PowerShell.ConsoleHost Microsoft.PowerShell.ConsoleHost.DoRunspaceLoop(System.String, Boolean, System.Collections.ObjectModel.Collection`1<System.Management.Automation.Runspaces.CommandParameter>, Boolean, Boolean, System.String)
+  a3b787d5f0 7ffaa231819a Microsoft.PowerShell.ConsoleHost Microsoft.PowerShell.ConsoleHost.Run(Microsoft.PowerShell.CommandLineParameterParser, Boolean)
+  a3b787d660 7ffaa2316626 Microsoft.PowerShell.ConsoleHost Microsoft.PowerShell.ConsoleHost.Start(System.Management.Automation.Runspaces.RunspaceConfiguration, System.String, System.String, System.String, System.String[])
+  a3b787d6e0 7ffaa232db8b Microsoft.PowerShell.ConsoleHost Microsoft.PowerShell.UnmanagedPSEntry.Start(System.String, System.String[])
+  a3b787d9e8            0 UNKNOWN [DebuggerU2MCatchHandlerFrame]
+  a3b787dd28            0 mscorlib [HelperMethodFrame_PROTECTOBJ] (System.RuntimeMethodHandle.InvokeMethod)
+  a3b787dea0 7ffacb0d44e0 mscorlib System.Reflection.RuntimeMethodInfo.UnsafeInvokeInternal(System.Object, System.Object[], System.Object[])
+  a3b787df10 7ffacb0bf4ee mscorlib System.Reflection.RuntimeMethodInfo.Invoke(System.Object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo)
+  a3b787f000            0 UNKNOWN [DebuggerU2MCatchHandlerFrame]
+  a3b787f050            0 UNKNOWN [GCFrame]
+  a3b787f018            0 UNKNOWN [GCFrame]
+2B40
+  a3b80fed98            0 mscorlib [HelperMethodFrame_1OBJ] (System.Threading.WaitHandle.WaitOneNative)
+  a3b80feec0 7ffacb07efdb mscorlib System.Threading.WaitHandle.InternalWaitOne(System.Runtime.InteropServices.SafeHandle, Int64, Boolean, Boolean)
+  a3b80feef0 7ffacb07efae mscorlib System.Threading.WaitHandle.WaitOne(Int32, Boolean)
+  a3b80fef30 7ffac7c63d14 System.Core System.IO.Pipes.NamedPipeServerStream.EndWaitForConnection(System.IAsyncResult)
+  a3b80fef90 7ffac20835dc System.Management.Automation System.Management.Automation.Remoting.RemoteSessionNamedPipeServer.ProcessListeningThread(System.Object)
+  a3b80ff0c0 7ffacb0c3a63 mscorlib System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, System.Object, Boolean)
+  a3b80ff190 7ffacb0c38f4 mscorlib System.Threading.ExecutionContext.Run(System.Threading.ExecutionContext, System.Threading.ContextCallback, System.Object, Boolean)
+  a3b80ff1c0 7ffacb0c38c2 mscorlib System.Threading.ExecutionContext.Run(System.Threading.ExecutionContext, System.Threading.ContextCallback, System.Object)
+  a3b80ff210 7ffacba71afc mscorlib System.Threading.ThreadHelper.ThreadStart(System.Object)
+  a3b80ff468            0 UNKNOWN [GCFrame]
+  a3b80ff7b8            0 UNKNOWN [DebuggerU2MCatchHandlerFrame]
+```
+
 ## Public.Exchange.Research
 DLL meant to be imported into PowerShell via a PowerShell Script, which performs mass commands in parallel against an array of servers.
 
