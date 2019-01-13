@@ -2,10 +2,17 @@
 This is C# code (often a DLL) for reference/example.
 
 ## Public.Debugging.Research
-The module is written to be directly imported into PowerShell (e.g.: Import-Module Public.Debugging.Research.dll -Verbose).
+The module is written to be directly imported into PowerShell.
+
+```
+Import-Module ".\Public.Debugging.Research.dll" -Verbose
+VERBOSE: Loading module from path '.\Public.Debugging.Research.dll'.
+VERBOSE: Importing cmdlet 'Debug-DumpFile'.
+VERBOSE: Importing cmdlet 'Debug-LiveProcess'.
+```
 
 ### DebugDumpFile
-PowerShell Command (Debug-CrashDump) written to dump the threads from a dump file.
+PowerShell Command (Debug-DumpFile) written to dump the threads from a dump file.
 
 ### DebugLiveProcess
 PowerShell Command (Debug-LiveProcess) written to dump the threads from a live process.
