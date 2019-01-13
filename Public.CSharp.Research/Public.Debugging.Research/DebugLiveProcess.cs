@@ -49,7 +49,7 @@ namespace Public.Debugging.Research
                 }
             }
 
-            using (DataTarget target = DataTarget.AttachToProcess(pid, (uint)TimeSpan.FromSeconds(5).TotalMinutes))
+            using (DataTarget target = DataTarget.AttachToProcess(pid, (uint)TimeSpan.FromSeconds(5).TotalMilliseconds))
             {
                 if (target.ClrVersions.Count > 0)
                 {
