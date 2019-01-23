@@ -115,3 +115,29 @@ Extends the [System.DateTime](https://docs.microsoft.com/en-us/dotnet/api/system
 ```
 int weekNumber = dateTime.Veckan();
 ```
+
+## Public.PowerShell.Research
+DLL meant to be imported into PowerShell to expose commands.
+
+### GetFileSizes
+Command to find the files in a folder and return the relative sizes.
+
+```
+Get-FileSizes -Path "D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.PowerShell.Research\bin\Debug\" | FT -AutoSize
+
+File                                                                                                                          Size (Bytes)
+----                                                                                                                          ------------
+D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.PowerShell.Research\bin\Debug\Public.PowerShell.Research.dll           6656
+D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.PowerShell.Research\bin\Debug\Public.PowerShell.Research.pdb          17920
+D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.PowerShell.Research\bin\Debug\System.Management.Automation.dll      7154176
+```
+
+```
+Get-FileSizes -Path "D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.PowerShell.Research\bin\Debug\" -SizesInMB | FT -AutoSize
+
+File                                                                                                                          Size (MB)
+----                                                                                                                          ---------
+D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.PowerShell.Research\bin\Debug\Public.PowerShell.Research.dll           0
+D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.PowerShell.Research\bin\Debug\Public.PowerShell.Research.pdb           0
+D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.PowerShell.Research\bin\Debug\System.Management.Automation.dll         6
+```
