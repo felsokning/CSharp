@@ -18,15 +18,30 @@ namespace Public.PowerShell.Research
     [Cmdlet(VerbsCommon.Get, "FileSizes")]
     public class GetFileSizes : Cmdlet
     {
+        /// <summary>
+        ///     External call into WinAPI, as exposed by Kernel32.
+        /// </summary>
+        /// <param name="lpFileName">The file to analyse.</param>
+        /// <param name="lpFileSizeHigh">The out uint to store the file's size.</param>
+        /// <returns></returns>
         [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "GetCompressedFileSize")]
         static extern uint GetCompressedFileSizeAPI(string lpFileName, out uint lpFileSizeHigh);
 
+        /// <summary>
+        ///     Gets or sets the value of the <see cref="Path"/> parameter
+        /// </summary>
         [Parameter(HelpMessage = "Path to query for the file sizes.")]
         public string Path { get; set; }
 
+        /// <summary>
+        ///     Gets or sets the value of <see cref="SizesInMB"/>
+        /// </summary>
         [Parameter(HelpMessage = "Should sizes be in MB")]
         public SwitchParameter SizesInMB { get; set; }
 
+        /// <summary>
+        ///     The overridden method <see cref="ProcessRecord"/> inherited from <see cref="Cmdlet"/>
+        /// </summary>
         protected override void ProcessRecord()
         {
             string[] files = Directory.GetFiles(this.Path);
@@ -48,6 +63,7 @@ namespace Public.PowerShell.Research
                     responseObject.Members.Add(new PSNoteProperty("Size (MB)", size));
                     returnObjects.Add(responseObject);
                 }
+
                 else
                 {
                     ulong size = ((ulong)HighOrder << 32) + LowOrder;

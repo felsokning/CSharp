@@ -141,3 +141,21 @@ D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.PowerShell.Resear
 D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.PowerShell.Research\bin\Debug\Public.PowerShell.Research.pdb           0
 D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.PowerShell.Research\bin\Debug\System.Management.Automation.dll         6
 ```
+
+### GetSystemUptime
+Returns the total uptime of the system targeted. No parameter provided targets the current running system.
+```
+Get-SystemUptime
+
+ComputerName Up Time
+------------ -------
+KALLIX       5.05:39:51.6560000
+```
+
+```
+Get-SystemUptime -ComputerNames Kallix
+
+ComputerName Up Time
+------------ -------
+KALLIX       5.05:39:51.6560000
+```
