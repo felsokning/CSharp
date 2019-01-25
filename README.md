@@ -1,6 +1,12 @@
 # CSharp
 This is C# code (often a DLL) for reference/example.
 
+## Public.Activities.Research
+Contains Activities that can be invoked via Windows Workflow Foundation.
+
+### DateTimeActivity
+An example Activity that returns the current DateTime in UTC.
+
 ## Public.Debugging.Research
 The module is written to be directly imported into PowerShell.
 
@@ -158,4 +164,14 @@ Get-SystemUptime -ComputerNames Kallix
 ComputerName Up Time
 ------------ -------
 KALLIX       5.05:39:51.6560000
+```
+
+## Public.WindowsWorkflow.Research
+Demonstrates invoking Windows Workflows (InvokeWindowsWorkflow.cs) via PowerShell.
+
+```
+Invoke-WindowsWorkflow -AssemblyPath "D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.Activities.Research\bin\Debug\Public.Activities.Research.dll" -Type "Public.Activities.Research.DateTimeActivity"
+Workflow a08f945f-8fe1-4b1b-8aad-7b8537ad65f9 Completed at 25/01/2019 00:08:09.
+        Result: 25/01/2019 00:08:09
+Workflow a08f945f-8fe1-4b1b-8aad-7b8537ad65f9 Unloaded.
 ```
