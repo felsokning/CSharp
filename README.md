@@ -171,7 +171,19 @@ Demonstrates invoking Windows Workflows (InvokeWindowsWorkflow.cs) via PowerShel
 
 ```
 Invoke-WindowsWorkflow -AssemblyPath "D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.Activities.Research\bin\Debug\Public.Activities.Research.dll" -Type "Public.Activities.Research.DateTimeActivity"
-Workflow a08f945f-8fe1-4b1b-8aad-7b8537ad65f9 Completed at 25/01/2019 00:08:09.
-        Result: 25/01/2019 00:08:09
-Workflow a08f945f-8fe1-4b1b-8aad-7b8537ad65f9 Unloaded.
+Starting Workflow: c4baa5b5-7f1d-4310-800e-bb3b9a5e4806
+Workflow c4baa5b5-7f1d-4310-800e-bb3b9a5e4806 Completed at 26/01/2019 23:15:33.
+Workflow c4baa5b5-7f1d-4310-800e-bb3b9a5e4806 Unloaded.
+Result:
+
+Saturday 26 January 2019 23:15:33
+```
+
+```
+Invoke-WindowsWorkflow -AssemblyPath "D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.Activities.Research\bin\Debug\Public.Activities.Research.dll" -Type "Public.Activities.Research.WebStringActivity"
+Starting Workflow: 69ac1093-9d91-433a-af54-6fe827c3bd60
+Workflow 69ac1093-9d91-433a-af54-6fe827c3bd60 Completed at 26/01/2019 23:13:50.
+Workflow 69ac1093-9d91-433a-af54-6fe827c3bd60 Unloaded.
+Result:
+GOOD
 ```

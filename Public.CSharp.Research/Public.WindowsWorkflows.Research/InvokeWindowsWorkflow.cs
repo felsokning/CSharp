@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="GetSystemUptime.cs" company="None">
+// <copyright file="InvokeWindowsWorkflow.cs" company="None">
 //     Copyright (c) felsokning. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -33,15 +33,29 @@ namespace Public.WindowsWorkflows.Research
         public string Type { get; set; }
 
         /// <summary>
+        ///     Gets or sets the value for the <see cref="Result"/> property.
+        ///     The Result is used to store the result returned from the Workflow.
+        /// </summary>
+        public object Result { get; set; }
+
+        /// <summary>
+        ///     Overrides the <see cref="BeginProcessing"/> method inherited from <see cref="Cmdlet"/>.
+        /// </summary>
+        protected override void BeginProcessing()
+        {
+            Result = null;
+        }
+
+        /// <summary>
         ///     Overrides the <see cref="ProcessRecord"/> method inherited from <see cref="Cmdlet"/>.
         /// </summary>
         protected override void ProcessRecord()
         {
             // See Public.Activities.Research for examples of Activities that you can use here.
             Assembly assembly = Assembly.LoadFrom(AssemblyPath);
-            ObjectHandle testCodeActivityObject = Activator.CreateInstance(assembly.FullName, Type);
-
-            WorkflowApplication newWorkflowApplication = new WorkflowApplication((Activity)testCodeActivityObject.Unwrap());
+            ObjectHandle newActivityObject = Activator.CreateInstance(assembly.FullName, Type);
+            Activity unwrappedActivity = (Activity)newActivityObject.Unwrap();
+            WorkflowApplication newWorkflowApplication = new WorkflowApplication(unwrappedActivity);
             newWorkflowApplication.Completed += delegate (WorkflowApplicationCompletedEventArgs e)
             {
                 if (e.CompletionState == ActivityInstanceState.Faulted)
@@ -57,7 +71,12 @@ namespace Public.WindowsWorkflows.Research
                 }
                 else
                 {
-                    Console.WriteLine("Workflow {0} Completed at {1}. \n\tResult: {2} ", e.InstanceId, DateTime.UtcNow, e.Outputs["Result"]);
+                    // Since the result can be *anything*, let's not treat it like a string.
+                    Result = e.Outputs["Result"];
+
+                    Console.WriteLine("Workflow {0} Completed at {1}.", 
+                        e.InstanceId, 
+                        DateTime.UtcNow);
                 }
             };
 
@@ -101,7 +120,20 @@ namespace Public.WindowsWorkflows.Research
                 return UnhandledExceptionAction.Terminate;
             };
 
+            Console.WriteLine($"Starting Workflow: { newWorkflowApplication.Id }");
             newWorkflowApplication.Run();
+
+            // Because a new thread is spawned, we need to wait for it to complete before we can move on.
+            System.Threading.Thread.Sleep(1000);
+        }
+
+        /// <summary>
+        ///     Overrides the <see cref="EndProcessing"/> method inherited from <see cref="Cmdlet"/>.
+        /// </summary>
+        protected override void EndProcessing()
+        {
+            Console.WriteLine("Result: ");
+            WriteObject(Result);
         }
     }
 }
