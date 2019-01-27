@@ -1,6 +1,6 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="DebugDumpFile.cs" company="None">
-//     Copyright (c) felsokning. All rights reserved.
+//     Copyright (c) felsokning. ClrMD All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 namespace Public.Debugging.Research
@@ -37,33 +37,41 @@ namespace Public.Debugging.Research
                 if (target.ClrVersions.Count > 0)
                 {
                     // Use the first CLR Runtime available due to SxS.
-                    ClrRuntime clrRuntime = target.ClrVersions.SingleOrDefault().CreateRuntime();
+                    ClrRuntime clrRuntime = target.ClrVersions.SingleOrDefault()?.CreateRuntime();
 
                     // Set the symbol file path, so we can debug the dump.
                     target.SymbolLocator.SymbolPath = "SRV*https://msdl.microsoft.com/download/symbols";
                     target.SymbolLocator.SymbolCache = "C:\\Symbols\\";
 
-                    foreach (ClrThread thread in clrRuntime.Threads)
+                    if (clrRuntime != null)
                     {
-                        if (!thread.IsAlive)
+                        foreach (ClrThread thread in clrRuntime.Threads)
                         {
-                            continue;
-                        }
-
-                        // If the thread's single frame is WaitForSingleObject, we probably don't care.
-                        if (thread.StackTrace.Count > 1)
-                        {
-                            Console.WriteLine("{0:X}", thread.OSThreadId);
-                            foreach (ClrStackFrame frame in thread.StackTrace)
+                            if (!thread.IsAlive)
                             {
-                                Console.WriteLine("{0,12:x} {1,12:x} {2} {3}", frame.StackPointer, frame.InstructionPointer, frame.ModuleName, frame.ToString());
+                                continue;
+                            }
+
+                            // If the thread's single frame is WaitForSingleObject, we probably don't care.
+                            if (thread.StackTrace.Count > 1)
+                            {
+                                Console.WriteLine("{0:X}", thread.OSThreadId);
+                                foreach (ClrStackFrame frame in thread.StackTrace)
+                                {
+                                    Console.WriteLine(
+                                        "{0,12:x} {1,12:x} {2} {3}",
+                                        frame.StackPointer,
+                                        frame.InstructionPointer,
+                                        frame.ModuleName,
+                                        frame);
+                                }
                             }
                         }
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"No CLR Versions found for { FilePath }. Dump is probably native. No can has with those maths.");
+                    Console.WriteLine($"No CLR Versions found for { this.FilePath }. Dump is probably native. No can has with those maths.");
                 }
             }
         }

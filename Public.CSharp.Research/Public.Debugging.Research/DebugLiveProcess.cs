@@ -12,7 +12,7 @@ namespace Public.Debugging.Research
     using Microsoft.Diagnostics.Runtime;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="DebugDumpFile"/> class.
+    ///     Initializes a new instance of the <see cref="DebugLiveProcess"/> class.
     /// </summary>
     [Cmdlet(VerbsDiagnostic.Debug, "LiveProcess")]
     public class DebugLiveProcess : Cmdlet
@@ -24,7 +24,7 @@ namespace Public.Debugging.Research
         public string Process { get; set; }
 
         /// <summary>
-        ///     Overrides <see cref="ProcessRecord"/>, leveraging ClrMD to analyze the given dump file.
+        ///     Overrides the <see cref="ProcessRecord"/> method inherited from <see cref="Cmdlet"/>.
         /// </summary>
         protected override void ProcessRecord()
         {
@@ -39,7 +39,7 @@ namespace Public.Debugging.Research
             if (!isPid)
             {
                 Process[] processes = System.Diagnostics.Process.GetProcessesByName(this.Process);
-                if (processes.Count() > 1)
+                if (processes.Length > 1)
                 {
                     throw new ArgumentException("Multiple processes found with that name. Please specify the PID.");
                 }
@@ -54,26 +54,34 @@ namespace Public.Debugging.Research
                 if (target.ClrVersions.Count > 0)
                 {
                     // Use the first CLR Runtime available due to SxS.
-                    ClrRuntime clrRuntime = target.ClrVersions.SingleOrDefault().CreateRuntime();
+                    ClrRuntime clrRuntime = target.ClrVersions.SingleOrDefault()?.CreateRuntime();
 
                     // Set the symbol file path, so we can debug the dump.
                     target.SymbolLocator.SymbolPath = "SRV*https://msdl.microsoft.com/download/symbols";
                     target.SymbolLocator.SymbolCache = "C:\\Symbols\\";
 
-                    foreach (ClrThread thread in clrRuntime.Threads)
+                    if (clrRuntime != null)
                     {
-                        if (!thread.IsAlive)
+                        foreach (ClrThread thread in clrRuntime.Threads)
                         {
-                            continue;
-                        }
-
-                        // If the thread's single frame is WaitForSingleObject, we probably don't care.
-                        if (thread.StackTrace.Count > 1)
-                        {
-                            Console.WriteLine("{0:X}", thread.OSThreadId);
-                            foreach (ClrStackFrame frame in thread.StackTrace)
+                            if (!thread.IsAlive)
                             {
-                                Console.WriteLine("{0,12:x} {1,12:x} {2} {3}", frame.StackPointer, frame.InstructionPointer, frame.ModuleName, frame.ToString());
+                                continue;
+                            }
+
+                            // If the thread's single frame is WaitForSingleObject, we probably don't care.
+                            if (thread.StackTrace.Count > 1)
+                            {
+                                Console.WriteLine("{0:X}", thread.OSThreadId);
+                                foreach (ClrStackFrame frame in thread.StackTrace)
+                                {
+                                    Console.WriteLine(
+                                        "{0,12:x} {1,12:x} {2} {3}",
+                                        frame.StackPointer,
+                                        frame.InstructionPointer,
+                                        frame.ModuleName,
+                                        frame);
+                                }
                             }
                         }
                     }

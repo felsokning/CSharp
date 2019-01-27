@@ -1,8 +1,7 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="PowerShellWrapper.cs" company="None">
-//     Copyright (c) John Bailey. All rights reserved.
+//     Copyright (c) felsokning. All rights reserved.
 // </copyright>
-// <author>John Bailey</author>
 //-----------------------------------------------------------------------
 namespace Public.Exchange.Research.Objects
 {
@@ -15,12 +14,23 @@ namespace Public.Exchange.Research.Objects
     /// </summary>
     public class PowerShellWrapper : IDisposable
     {
+        /// <summary>
+        ///     The PowerShell object we intend to wrap.
+        /// </summary>
         private PowerShell newPowerShell;
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="PowerShellWrapper"/> class.
+        /// </summary>
+        public PowerShellWrapper()
+        {
+            this.newPowerShell = PowerShell.Create();
+        }
 
         /// <summary>
         ///     Adds the command to the PowerShell instance.
         /// </summary>
-        /// <param name="cmdlet">Cmdlet.</param>
+        /// <param name="cmdlet">Add a command to construct a command pipeline.</param>
         public void AddCommand(string cmdlet)
         {
             this.newPowerShell.AddCommand(cmdlet);
@@ -29,8 +39,8 @@ namespace Public.Exchange.Research.Objects
         /// <summary>
         ///     Adds the parameter to the command.
         /// </summary>
-        /// <param name="parameterName">Parameter name.</param>
-        /// <param name="value">Value.</param>
+        /// <param name="parameterName">Name of the parameter.</param>
+        /// <param name="value">Value for the parameter.</param>
         public void AddParameter(string parameterName, object value)
         {
             this.newPowerShell.AddParameter(parameterName, value);
@@ -52,15 +62,7 @@ namespace Public.Exchange.Research.Objects
         /// <returns>Result from the invocation (almost always void).</returns>
         public Collection<PSObject> Invoke()
         {
-            return newPowerShell.Invoke();
-        }
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="PowerShellWrapper"/> class.
-        /// </summary>
-        public PowerShellWrapper()
-        {
-            this.newPowerShell = PowerShell.Create();
+            return this.newPowerShell.Invoke();
         }
 
         /// <summary>
@@ -76,7 +78,6 @@ namespace Public.Exchange.Research.Objects
         {
             this.newPowerShell.Dispose();
             this.Dispose(true);
-
         }
 
         /// <summary>

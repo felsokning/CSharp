@@ -17,10 +17,10 @@ namespace Public.Exchange.Research
         /// <summary>
         ///     This is the public entry point for the PowerShell Automation.
         /// </summary>
-        /// <param name="passedCommand">Passed command.</param>
-        /// <param name="servers">Servers.</param>
-        /// <param name="parameter">Parameter.</param>
-        /// <param name="value">Value.</param>
+        /// <param name="passedCommand">Command to be run.</param>
+        /// <param name="servers">The servers to run the commands against.</param>
+        /// <param name="parameter">Name of the Parameter.</param>
+        /// <param name="value">Value of the parameter.</param>
         public static void StartAutomation(Commands passedCommand, string[] servers, string parameter, string value)
         {
             try
@@ -31,7 +31,10 @@ namespace Public.Exchange.Research
             catch (AggregateException e)
             {
                 // As the exception is wrapped, we only care about the original one.
-                throw e.InnerException;
+                if (e.InnerException != null)
+                {
+                    throw e.InnerException;
+                }
             }
         }
     }

@@ -159,11 +159,11 @@
     <Compile Include="Objects\TypeEnums.cs" />
     <Compile Include="PublicFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\TestExtensionMethods.cs" />
-    <Compile Include="Tests\TestInternalFactory.cs" />
-    <Compile Include="Tests\TestObjects.cs" />
-    <Compile Include="Tests\TestPowerShellWrapper.cs" />
-    <Compile Include="Tests\TestPublicFactory.cs" />
+    <Compile Include="Tests\TestingExtensionMethods.cs" />
+    <Compile Include="Tests\TestingInternalFactory.cs" />
+    <Compile Include="Tests\TestingObjects.cs" />
+    <Compile Include="Tests\TestingPowerShellWrapper.cs" />
+    <Compile Include="Tests\TestingPublicFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

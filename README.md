@@ -7,6 +7,9 @@ Contains Activities that can be invoked via Windows Workflow Foundation.
 ### DateTimeActivity
 An example Activity that returns the current DateTime in UTC.
 
+### WebStringActivity
+An example Activity that returns a string from a WebRequest to LinkedIn's tracking url.
+
 ## Public.Debugging.Research
 The module is written to be directly imported into PowerShell.
 

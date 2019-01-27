@@ -43,7 +43,7 @@ namespace Public.WindowsWorkflows.Research
         /// </summary>
         protected override void BeginProcessing()
         {
-            Result = null;
+            this.Result = null;
         }
 
         /// <summary>
@@ -52,16 +52,17 @@ namespace Public.WindowsWorkflows.Research
         protected override void ProcessRecord()
         {
             // See Public.Activities.Research for examples of Activities that you can use here.
-            Assembly assembly = Assembly.LoadFrom(AssemblyPath);
-            ObjectHandle newActivityObject = Activator.CreateInstance(assembly.FullName, Type);
+            Assembly assembly = Assembly.LoadFrom(this.AssemblyPath);
+            ObjectHandle newActivityObject = Activator.CreateInstance(assembly.FullName, this.Type);
             Activity unwrappedActivity = (Activity)newActivityObject.Unwrap();
             WorkflowApplication newWorkflowApplication = new WorkflowApplication(unwrappedActivity);
-            newWorkflowApplication.Completed += delegate (WorkflowApplicationCompletedEventArgs e)
+            newWorkflowApplication.Completed += delegate(WorkflowApplicationCompletedEventArgs e)
             {
                 if (e.CompletionState == ActivityInstanceState.Faulted)
                 {
                     Console.WriteLine("Workflow {0} Terminated.", e.InstanceId);
-                    Console.WriteLine("Exception: {0}\n{1}",
+                    Console.WriteLine(
+                        "Exception: {0}\n{1}",
                         e.TerminationException.GetType().FullName,
                         e.TerminationException.Message);
                 }
@@ -72,48 +73,55 @@ namespace Public.WindowsWorkflows.Research
                 else
                 {
                     // Since the result can be *anything*, let's not treat it like a string.
-                    Result = e.Outputs["Result"];
+                    this.Result = e.Outputs["Result"];
 
-                    Console.WriteLine("Workflow {0} Completed at {1}.", 
+                    Console.WriteLine(
+                        "Workflow {0} Completed at {1}.", 
                         e.InstanceId, 
                         DateTime.UtcNow);
                 }
             };
 
-            newWorkflowApplication.Aborted = delegate (WorkflowApplicationAbortedEventArgs e)
+            newWorkflowApplication.Aborted = delegate(WorkflowApplicationAbortedEventArgs e)
             {
                 // The workflow aborted, so let's find out why.
                 Console.WriteLine("Workflow {0} has been aborted.", e.InstanceId);
-                Console.WriteLine("Exception: {0}\n{1}",
+                Console.WriteLine(
+                    "Exception: {0}\n{1}",
                     e.Reason.GetType().FullName,
                     e.Reason.Message);
             };
 
-            newWorkflowApplication.Idle = delegate (WorkflowApplicationIdleEventArgs e)
+            newWorkflowApplication.Idle = delegate(WorkflowApplicationIdleEventArgs e)
             {
                 // NOTE: If the workflow can persist, both Idle and PersistableIdle are called in that order.
                 Console.WriteLine("Workflow {0} Idle.", e.InstanceId);
             };
 
-            newWorkflowApplication.PersistableIdle = delegate (WorkflowApplicationIdleEventArgs e)
+            newWorkflowApplication.PersistableIdle = delegate(WorkflowApplicationIdleEventArgs e)
             {
                 // Runtime will persist.
+                Console.WriteLine("Workflow {0} is in PersistableIdle.", e.InstanceId);
                 return PersistableIdleAction.Unload;
             };
 
-            newWorkflowApplication.Unloaded = delegate (WorkflowApplicationEventArgs e)
+            newWorkflowApplication.Unloaded = delegate(WorkflowApplicationEventArgs e)
             {
                 Console.WriteLine("Workflow {0} Unloaded.", e.InstanceId);
             };
 
-            newWorkflowApplication.OnUnhandledException = delegate (WorkflowApplicationUnhandledExceptionEventArgs e)
+            newWorkflowApplication.OnUnhandledException = delegate(WorkflowApplicationUnhandledExceptionEventArgs e)
             {
                 // Display the unhandled exception.
-                Console.WriteLine("OnUnhandledException in Workflow {0}\n{1}",
-                    e.InstanceId, e.UnhandledException.Message);
+                Console.WriteLine(
+                    "OnUnhandledException in Workflow {0}\n{1}",
+                    e.InstanceId, 
+                    e.UnhandledException.Message);
 
-                Console.WriteLine("ExceptionSource: {0} - {1}",
-                    e.ExceptionSource.DisplayName, e.ExceptionSourceInstanceId);
+                Console.WriteLine(
+                    "ExceptionSource: {0} - {1}",
+                    e.ExceptionSource.DisplayName, 
+                    e.ExceptionSourceInstanceId);
 
                 // Instruct the runtime to terminate the workflow.
                 // The other viable choices here are 'Abort' or 'Cancel'
@@ -133,7 +141,7 @@ namespace Public.WindowsWorkflows.Research
         protected override void EndProcessing()
         {
             Console.WriteLine("Result: ");
-            WriteObject(Result);
+            this.WriteObject(this.Result);
         }
     }
 }

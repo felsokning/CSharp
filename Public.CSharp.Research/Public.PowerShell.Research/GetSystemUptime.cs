@@ -29,7 +29,7 @@ namespace Public.PowerShell.Research
         protected override void ProcessRecord()
         {
             Collection<PSObject> returnObjects = new Collection<PSObject>();
-            if (ComputerNames == null)
+            if (this.ComputerNames == null)
             {
                 PSObject newPsObject = new PSObject();
                 PerformanceCounter uptimeCounter = new PerformanceCounter("System", "System Up Time");
@@ -42,7 +42,7 @@ namespace Public.PowerShell.Research
             {
                 // We could do a parallel for each but thread safety is a concern and given that this will probably have
                 // low use there's currently no drive to change the architecture.
-                ComputerNames.ToList().ForEach(c => 
+                this.ComputerNames.ToList().ForEach(c => 
                 {
                     PSObject newPsObject = new PSObject();
                     PerformanceCounter uptimeCounter = new PerformanceCounter("System", "System Up Time", null, c);
@@ -53,7 +53,7 @@ namespace Public.PowerShell.Research
                 });
             }
 
-            WriteObject(returnObjects);
+            this.WriteObject(returnObjects);
         }
     }
 }

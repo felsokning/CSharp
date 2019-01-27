@@ -20,7 +20,7 @@ namespace Public.Activities.Research
         /// <returns>A DateTime object.</returns>
         protected override DateTime Execute(CodeActivityContext context)
         {
-            // Return a simple <T> for demostration.
+            // Return a simple <T> for demonstration.
             return DateTime.UtcNow;
         }
     }

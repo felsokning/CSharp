@@ -1,23 +1,23 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="TestExtensionMethods.cs" company="None">
-//     Copyright (c) John Bailey. All rights reserved.
+// <copyright file="TestingExtensionMethods.cs" company="None">
+//     Copyright (c) felsokning. All rights reserved.
 // </copyright>
-// <author>John Bailey</author>
 //-----------------------------------------------------------------------
-namespace Public.Exchange.Research
+namespace Public.Exchange.Research.Tests
 {
     using System;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using Methods;
-    using Objects;
+    using Public.Exchange.Research.Methods;
+    using Public.Exchange.Research.Objects;
 
     /// <summary>
-    ///     Initializes a new instance of <see cref="TestExtensionMethods"/> class
+    ///     Initializes a new instance of <see cref="TestingExtensionMethods"/> class
     ///     to test the extension methods we've implemented.
     /// </summary>
     [TestClass]
-    public class TestExtensionMethods
+    public class TestingExtensionMethods
     {
         /// <summary>
         ///     Tests the none enumeration.
@@ -188,7 +188,7 @@ namespace Public.Exchange.Research
             Assert.IsTrue(returnedString.Contains("Command"));
             string identityString = Commands.Testing.GetIdentityString(string.Empty);
             Assert.IsTrue(string.IsNullOrWhiteSpace(identityString));
-            Assert.IsTrue(identityString.Equals(string.Empty));
+            Assert.IsTrue(identityString != null && identityString.Equals(string.Empty));
         }
     }
 }

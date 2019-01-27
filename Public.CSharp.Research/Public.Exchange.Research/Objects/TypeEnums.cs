@@ -6,18 +6,21 @@
 namespace Public.Exchange.Research.Objects
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="TypeEnums"/> class.
     /// </summary>
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Naming convention was created by Microsoft.")]
+    [SuppressMessage("ReSharper", "StyleCop.SA1602", Justification = "Naming convention was created by Microsoft.")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "None of my code, currently, uses this. This is for public reference only.")]
+    [SuppressMessage("ReSharper", "IdentifierTypo", Justification = "Naming convention was created by Microsoft.")]
     public class TypeEnums
     {
         /// NOTE:
         ///     These enums are bitwise flags and, as such, can be stored as multi-valued via sums.
         ///     For more information on this, please see:
         ///     https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/enumeration-types#enumeration-types-as-bit-flags
-
-
         /// <summary>
         ///     The possible values for the <see cref="MsExchRecipientDisplayType"/> property.
         /// </summary>

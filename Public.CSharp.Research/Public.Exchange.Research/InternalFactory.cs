@@ -20,17 +20,20 @@ namespace Public.Exchange.Research
         /// <summary>
         ///     Internal entry into the automation framework.
         /// </summary>
-        /// <param name="passedCommand">Passed command.</param>
-        /// <param name="servers">Servers.</param>
-        /// <param name="parameter">Parameter.</param>
-        /// <param name="value">Value.</param>
+        /// <param name="passedCommand">Command to be run.</param>
+        /// <param name="testing">Boolean to determine if this is being called by a test method.</param>
+        /// <param name="servers">The servers to run the commands against.</param>
+        /// <param name="parameter">Name of the Parameter.</param>
+        /// <param name="value">Value of the parameter.</param>
         public void DoAutomationWork(Commands passedCommand, bool testing, string[] servers, string parameter, string value)
         {
             // As the number of servers could be in the hundreds,
             // we parallel the execution so that the tasks may be performed
             // "simultaneously". See the reference source for Parallel.ForEach
             // for details on how "simultaneous" may not be the case.
-            Parallel.ForEach(servers, (x) =>
+            Parallel.ForEach(
+                servers, 
+                (x) =>
             {
                 PowerShellWrapper newPowerShellWrapper = new PowerShellWrapper();
                 this.BeginPowerShellWork(newPowerShellWrapper.Create, testing, passedCommand, x, parameter, value);
@@ -38,13 +41,14 @@ namespace Public.Exchange.Research
         }
 
         /// <summary>
-        ///     Creates PowerShell instance via Func<T> and runs the command.
+        ///     Creates PowerShell instance and runs the command.
         /// </summary>
-        /// <param name="creator">Creator.</param>
-        /// <param name="command">Command.</param>
-        /// <param name="server">Server.</param>
-        /// <param name="parameter">Parameter.</param>
-        /// <param name="value">Value.</param>
+        /// <param name="creator">The function that instantiates the instance.</param>
+        /// <param name="testing">Boolean to determine if this is being called by a test method.</param>
+        /// <param name="command">Command to be run.</param>
+        /// <param name="server">The servers to run the commands against.</param>
+        /// <param name="parameter">Name of the Parameter.</param>
+        /// <param name="value">Value of the parameter.</param>
         private void BeginPowerShellWork(Func<PowerShell> creator, bool testing, Commands command, string server, string parameter, string value)
         {
             // Tested in PowerShell in Unix. Daring, I'm aware...

@@ -1,19 +1,19 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="TestObjects.cs" company="None">
+// <copyright file="TestingObjects.cs" company="None">
 //     Copyright (c) felsokning. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Public.Exchange.Research
+namespace Public.Exchange.Research.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using Objects;
+    using Public.Exchange.Research.Objects;
 
     /// <summary>
     ///     Test the objects created.
     /// </summary>
     [TestClass]
-    public class TestObjects
+    public class TestingObjects
     {
         /// <summary>
         ///     Tests None Enumeration.

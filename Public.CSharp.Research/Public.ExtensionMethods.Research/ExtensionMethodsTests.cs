@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="ExtensionMethods.cs" company="None">
+// <copyright file="ExtensionMethodsTests.cs" company="None">
 //     Copyright (c) felsokning. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -8,9 +8,15 @@ namespace Public.ExtensionMethods.Research
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="ExtensionMethodsTests"/> class.
+    /// </summary>
     [TestClass]
     public class ExtensionMethodsTests
     {
+        /// <summary>
+        ///     Validates that the method returns a value that is not zero.
+        /// </summary>
         [TestMethod]
         public void ValidateVeckanUtcNow()
         {
@@ -20,6 +26,9 @@ namespace Public.ExtensionMethods.Research
             Assert.IsFalse(weekNumber == 0);
         }
 
+        /// <summary>
+        ///     Validates that the method returns the correct value for the date.
+        /// </summary>
         [TestMethod]
         public void ValidateVeckan1990()
         {
@@ -30,6 +39,9 @@ namespace Public.ExtensionMethods.Research
             Assert.AreEqual(weekNumber, 41);
         }
 
+        /// <summary>
+        ///     Validates that the method returns the correct value for the date of FREEDOM.
+        /// </summary>
         [TestMethod]
         public void ValidateVeckanFreedom()
         {
@@ -40,7 +52,11 @@ namespace Public.ExtensionMethods.Research
             Assert.AreEqual(weekNumber, 27);
         }
 
+        /// <summary>
+        ///     Validates that the method returns the correct value for the date of the Battle of Åsle.
+        /// </summary>
         [TestMethod]
+        // ReSharper disable once StyleCop.SA1650 -- Already in the dictionary. Y U HATE ME ReSharper!?
         public void ValidateBattleOfÅsle()
         {
             DateTime dateTime = new DateTime(1389, 02, 24);
@@ -50,6 +66,9 @@ namespace Public.ExtensionMethods.Research
             Assert.AreEqual(weekNumber, 9);
         }
 
+        /// <summary>
+        ///     Validates that the method fails for all zeroes (as it should).
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void ValidateAllZeroes()

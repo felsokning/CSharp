@@ -8,8 +8,9 @@ namespace Public.Activities.Research
     using System.Activities;
     using System.Net;
 
+    /// <inheritdoc />
     /// <summary>
-    ///     Initializes a new instance of the <see cref="WebStringActivity"/> class.
+    ///     Initializes a new instance of the <see cref="WebStringActivity" /> class.
     /// </summary>
     public class WebStringActivity : CodeActivity<string>
     {

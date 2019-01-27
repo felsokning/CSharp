@@ -19,25 +19,25 @@ namespace Public.PowerShell.Research
     public class GetFileSizes : Cmdlet
     {
         /// <summary>
-        ///     External call into WinAPI, as exposed by Kernel32.
-        /// </summary>
-        /// <param name="lpFileName">The file to analyse.</param>
-        /// <param name="lpFileSizeHigh">The out uint to store the file's size.</param>
-        /// <returns></returns>
-        [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "GetCompressedFileSize")]
-        static extern uint GetCompressedFileSizeAPI(string lpFileName, out uint lpFileSizeHigh);
-
-        /// <summary>
         ///     Gets or sets the value of the <see cref="Path"/> parameter
         /// </summary>
         [Parameter(HelpMessage = "Path to query for the file sizes.")]
         public string Path { get; set; }
 
         /// <summary>
-        ///     Gets or sets the value of <see cref="SizesInMB"/>
+        ///     Gets or sets the value of <see cref="SizesInMb"/>
         /// </summary>
         [Parameter(HelpMessage = "Should sizes be in MB")]
-        public SwitchParameter SizesInMB { get; set; }
+        public SwitchParameter SizesInMb { get; set; }
+
+        /// <summary>
+        ///     External call into WinAPI, as exposed by Kernel32.
+        /// </summary>
+        /// <param name="fileName">The file to analyze.</param>
+        /// <param name="fileSizeHigh">The out integer to store the file's high size.</param>
+        /// <returns>The out integer to store the file's low size.</returns>
+        [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "GetCompressedFileSize")]
+        public static extern uint GetCompressedFileSizeAPI(string fileName, out uint fileSizeHigh);
 
         /// <summary>
         ///     The overridden method <see cref="ProcessRecord"/> inherited from <see cref="Cmdlet"/>
@@ -48,16 +48,16 @@ namespace Public.PowerShell.Research
             Collection<PSObject> returnObjects = new Collection<PSObject>();
             files.ToList().ForEach(f => 
             {
-                uint HighOrder;
-                uint LowOrder;
-                LowOrder = GetCompressedFileSizeAPI(f, out HighOrder);
+                uint lowOrder = GetCompressedFileSizeAPI(f, out var highOrder);
                 int error = Marshal.GetLastWin32Error();
-                if (HighOrder == 0 && LowOrder == 0xFFFFFFFF && error != 0)
-                    throw new Win32Exception(error);
-
-                if (SizesInMB)
+                if (highOrder == 0 && lowOrder == 0xFFFFFFFF && error != 0)
                 {
-                    ulong size = ((((ulong)HighOrder << 32) + LowOrder) / 1024) / 1024;
+                    throw new Win32Exception(error);
+                }
+
+                if (this.SizesInMb)
+                {
+                    ulong size = ((((ulong)highOrder << 32) + lowOrder) / 1024) / 1024;
                     PSObject responseObject = new PSObject();
                     responseObject.Members.Add(new PSNoteProperty("File", f));
                     responseObject.Members.Add(new PSNoteProperty("Size (MB)", size));
@@ -66,7 +66,7 @@ namespace Public.PowerShell.Research
 
                 else
                 {
-                    ulong size = ((ulong)HighOrder << 32) + LowOrder;
+                    ulong size = ((ulong)highOrder << 32) + lowOrder;
                     PSObject responseObject = new PSObject();
                     responseObject.Members.Add(new PSNoteProperty("File", f));
                     responseObject.Members.Add(new PSNoteProperty("Size (Bytes)", size));
@@ -74,7 +74,7 @@ namespace Public.PowerShell.Research
                 }
             });
 
-            WriteObject(returnObjects);
+            this.WriteObject(returnObjects);
         }
     }
 }

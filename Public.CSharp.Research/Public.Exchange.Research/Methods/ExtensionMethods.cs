@@ -52,8 +52,8 @@ namespace Public.Exchange.Research.Methods
         ///     Gets the identity string for the command.
         /// </summary>
         /// <returns>The identity string.</returns>
-        /// <param name="passedCommand">Passed command.</param>
-        /// <param name="server">Server.</param>
+        /// <param name="passedCommand">The command to be ran.</param>
+        /// <param name="server">The server that the command is ran against.</param>
         public static string GetIdentityString(this Commands passedCommand, string server)
         {
             switch (passedCommand)

@@ -1,21 +1,22 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="TestPublicFactory.cs" company="None">
+// <copyright file="TestingPublicFactory.cs" company="None">
 //     Copyright (c) felsokning. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Public.Exchange.Research
+namespace Public.Exchange.Research.Tests
 {
     using System;
     using System.Management.Automation;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using Objects;
+    using Public.Exchange.Research.Objects;
 
     /// <summary>
     ///     Test internal factory.
     /// </summary>
     [TestClass]
-    public class TestPublicFactory
+    public class TestingPublicFactory
     {
         /// <summary>
         ///     Tests null three parameters.
