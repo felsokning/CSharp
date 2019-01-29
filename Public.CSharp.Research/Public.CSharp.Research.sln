@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28407.52
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Public.Debugging.Research", "Public.Debugging.Research\Public.Debugging.Research.csproj", "{75473513-D586-4FBE-B82B-C6D143D9FA98}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Public.Exchange.Research", "Public.Exchange.Research\Public.Exchange.Research.csproj", "{D50EB927-B4FA-46A8-BE94-47A2B5B1B2C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Public.ExtensionMethods.Research", "Public.ExtensionMethods.Research\Public.ExtensionMethods.Research.csproj", "{8C942274-9FDF-4BE6-82DE-2DD981B21875}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Public.Extensions.Research", "Public.Extensions.Research\Public.Extensions.Research.csproj", "{8C942274-9FDF-4BE6-82DE-2DD981B21875}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Public.PowerShell.Research", "Public.PowerShell.Research\Public.PowerShell.Research.csproj", "{D770CD0C-8638-49B5-AFD2-78F9D7972C82}"
 EndProject
@@ -57,16 +57,16 @@ Global
 		{D770CD0C-8638-49B5-AFD2-78F9D7972C82}.Release|x64.Build.0 = Release|Any CPU
 		{CBDAE380-439A-47E8-A298-E5872F6BCF3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CBDAE380-439A-47E8-A298-E5872F6BCF3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CBDAE380-439A-47E8-A298-E5872F6BCF3E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{CBDAE380-439A-47E8-A298-E5872F6BCF3E}.Debug|x64.Build.0 = Debug|Any CPU
+		{CBDAE380-439A-47E8-A298-E5872F6BCF3E}.Debug|x64.ActiveCfg = Debug|x64
+		{CBDAE380-439A-47E8-A298-E5872F6BCF3E}.Debug|x64.Build.0 = Debug|x64
 		{CBDAE380-439A-47E8-A298-E5872F6BCF3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBDAE380-439A-47E8-A298-E5872F6BCF3E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CBDAE380-439A-47E8-A298-E5872F6BCF3E}.Release|x64.ActiveCfg = Release|Any CPU
 		{CBDAE380-439A-47E8-A298-E5872F6BCF3E}.Release|x64.Build.0 = Release|Any CPU
 		{4467B32F-A54C-44EE-82BC-B88C130F47B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4467B32F-A54C-44EE-82BC-B88C130F47B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4467B32F-A54C-44EE-82BC-B88C130F47B9}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{4467B32F-A54C-44EE-82BC-B88C130F47B9}.Debug|x64.Build.0 = Debug|Any CPU
+		{4467B32F-A54C-44EE-82BC-B88C130F47B9}.Debug|x64.ActiveCfg = Debug|x64
+		{4467B32F-A54C-44EE-82BC-B88C130F47B9}.Debug|x64.Build.0 = Debug|x64
 		{4467B32F-A54C-44EE-82BC-B88C130F47B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4467B32F-A54C-44EE-82BC-B88C130F47B9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4467B32F-A54C-44EE-82BC-B88C130F47B9}.Release|x64.ActiveCfg = Release|Any CPU

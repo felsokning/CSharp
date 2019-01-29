@@ -3,7 +3,7 @@
 //     Copyright (c) felsokning. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Public.ExtensionMethods.Research
+namespace Public.Extensions.Research
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

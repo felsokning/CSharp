@@ -8,12 +8,19 @@ namespace Public.Activities.Research
     using System.Activities;
     using System.Net;
 
+    using Public.Extensions.Research;
+
     /// <inheritdoc />
     /// <summary>
     ///     Initializes a new instance of the <see cref="WebStringActivity" /> class.
     /// </summary>
-    public class WebStringActivity : CodeActivity<string>
+    public class WebStringActivity : SwedishCodeActivity<string>
     {
+        /// <summary>
+        ///     Gets or sets the value of the <see cref="FirstArgument"/> parameter.
+        /// </summary>
+        public InArgument<string> FirstArgument { get; set; }
+
         /// <summary>
         ///     The <see cref="Execute(CodeActivityContext)"/> method inherited from <see cref="CodeActivity{TResult}"/>.
         /// </summary>
@@ -21,8 +28,10 @@ namespace Public.Activities.Research
         /// <returns>A string response from the request.</returns>
         protected override string Execute(CodeActivityContext context)
         {
+            this.FirstArgument = this.FirstInArgument;
+            string target = context.GetValue(this.FirstArgument);
             WebClient newWebClient = new WebClient();
-            return newWebClient.DownloadString("https://www.linkedin.com/li/track ");
+            return newWebClient.DownloadString(target);
         }
     }
 }

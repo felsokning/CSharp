@@ -11,6 +11,8 @@ namespace Public.WindowsWorkflows.Research
     using System.Reflection;
     using System.Runtime.Remoting;
 
+    using Public.Extensions.Research;
+
     /// <summary>
     ///     Initializes a new instance of the <see cref="InvokeWindowsWorkflow"/> class.
     /// </summary>
@@ -33,10 +35,17 @@ namespace Public.WindowsWorkflows.Research
         public string Type { get; set; }
 
         /// <summary>
+        ///     Gets or sets the value of the <see cref="PassedValue"/> parameter.
+        ///     The parameter is passed into the activity for the invocation in the workflow.
+        /// </summary>
+        [Parameter(HelpMessage = "The value to pass into the workflow.", Mandatory = false)]
+        public string PassedValue { get; set; }
+
+        /// <summary>
         ///     Gets or sets the value for the <see cref="Result"/> property.
         ///     The Result is used to store the result returned from the Workflow.
         /// </summary>
-        public object Result { get; set; }
+        private object Result { get; set; }
 
         /// <summary>
         ///     Overrides the <see cref="BeginProcessing"/> method inherited from <see cref="Cmdlet"/>.
@@ -54,7 +63,12 @@ namespace Public.WindowsWorkflows.Research
             // See Public.Activities.Research for examples of Activities that you can use here.
             Assembly assembly = Assembly.LoadFrom(this.AssemblyPath);
             ObjectHandle newActivityObject = Activator.CreateInstance(assembly.FullName, this.Type);
-            Activity unwrappedActivity = (Activity)newActivityObject.Unwrap();
+            SwedishCodeActivity<string> unwrappedActivity = (SwedishCodeActivity<string>)newActivityObject.Unwrap();
+            if (!string.IsNullOrWhiteSpace(this.PassedValue))
+            {
+                unwrappedActivity.FirstInArgument = this.PassedValue;
+            }
+
             WorkflowApplication newWorkflowApplication = new WorkflowApplication(unwrappedActivity);
             newWorkflowApplication.Completed += delegate(WorkflowApplicationCompletedEventArgs e)
             {
@@ -132,7 +146,7 @@ namespace Public.WindowsWorkflows.Research
             newWorkflowApplication.Run();
 
             // Because a new thread is spawned, we need to wait for it to complete before we can move on.
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(3000);
         }
 
         /// <summary>
