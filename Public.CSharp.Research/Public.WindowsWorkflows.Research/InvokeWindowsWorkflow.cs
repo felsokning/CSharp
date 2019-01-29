@@ -7,6 +7,7 @@ namespace Public.WindowsWorkflows.Research
 {
     using System;
     using System.Activities;
+    using System.Configuration;
     using System.Management.Automation;
     using System.Reflection;
     using System.Runtime.Remoting;
@@ -19,13 +20,6 @@ namespace Public.WindowsWorkflows.Research
     [Cmdlet(VerbsLifecycle.Invoke, "WindowsWorkflow")]
     public class InvokeWindowsWorkflow : Cmdlet
     {
-        /// <summary>
-        ///     Gets or sets the value for the <see cref="AssemblyPath"/> parameter.
-        ///     The assembly path is where the compiled assembly for the activity should be found.
-        /// </summary>
-        [Parameter(HelpMessage = "Path to the Workflow Assembly.", Mandatory = true)]
-        public string AssemblyPath { get; set; }
-
         /// <summary>
         ///     Gets or sets the value for the <see cref="Type"/> parameter.
         ///     The type will be exposed in the assembly. To verify the type, use assembly.ExportedTypes
@@ -60,8 +54,11 @@ namespace Public.WindowsWorkflows.Research
         /// </summary>
         protected override void ProcessRecord()
         {
+            // Because this isn't an app, we need do some science to get the config value.
+            Configuration dllConfiguration = ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location);
+            Assembly assembly = Assembly.LoadFrom(dllConfiguration.AppSettings.Settings["DllDropPath"].Value);
+
             // See Public.Activities.Research for examples of Activities that you can use here.
-            Assembly assembly = Assembly.LoadFrom(this.AssemblyPath);
             ObjectHandle newActivityObject = Activator.CreateInstance(assembly.FullName, this.Type);
             SwedishCodeActivity<string> unwrappedActivity = (SwedishCodeActivity<string>)newActivityObject.Unwrap();
             if (!string.IsNullOrWhiteSpace(this.PassedValue))
