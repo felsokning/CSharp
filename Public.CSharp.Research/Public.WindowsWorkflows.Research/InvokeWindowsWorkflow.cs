@@ -11,6 +11,7 @@ namespace Public.WindowsWorkflows.Research
     using System.Management.Automation;
     using System.Reflection;
     using System.Runtime.Remoting;
+    using System.Threading;
 
     using Public.Extensions.Research;
 
@@ -66,6 +67,7 @@ namespace Public.WindowsWorkflows.Research
                 unwrappedActivity.FirstInArgument = this.PassedValue;
             }
 
+            AutoResetEvent syncEvent = new AutoResetEvent(false);
             WorkflowApplication newWorkflowApplication = new WorkflowApplication(unwrappedActivity);
             newWorkflowApplication.Completed += delegate(WorkflowApplicationCompletedEventArgs e)
             {
@@ -76,10 +78,12 @@ namespace Public.WindowsWorkflows.Research
                         "Exception: {0}\n{1}",
                         e.TerminationException.GetType().FullName,
                         e.TerminationException.Message);
+                    syncEvent.Set();
                 }
                 else if (e.CompletionState == ActivityInstanceState.Canceled)
                 {
                     Console.WriteLine("Workflow {0} Canceled.", e.InstanceId);
+                    syncEvent.Set();
                 }
                 else
                 {
@@ -90,6 +94,7 @@ namespace Public.WindowsWorkflows.Research
                         "Workflow {0} Completed at {1}.", 
                         e.InstanceId, 
                         DateTime.UtcNow);
+                    syncEvent.Set();
                 }
             };
 
@@ -101,24 +106,28 @@ namespace Public.WindowsWorkflows.Research
                     "Exception: {0}\n{1}",
                     e.Reason.GetType().FullName,
                     e.Reason.Message);
+                syncEvent.Set();
             };
 
             newWorkflowApplication.Idle = delegate(WorkflowApplicationIdleEventArgs e)
             {
                 // NOTE: If the workflow can persist, both Idle and PersistableIdle are called in that order.
                 Console.WriteLine("Workflow {0} Idle.", e.InstanceId);
+                syncEvent.Set();
             };
 
             newWorkflowApplication.PersistableIdle = delegate(WorkflowApplicationIdleEventArgs e)
             {
                 // Runtime will persist.
                 Console.WriteLine("Workflow {0} is in PersistableIdle.", e.InstanceId);
+                syncEvent.Set();
                 return PersistableIdleAction.Unload;
             };
 
             newWorkflowApplication.Unloaded = delegate(WorkflowApplicationEventArgs e)
             {
                 Console.WriteLine("Workflow {0} Unloaded.", e.InstanceId);
+                syncEvent.Set();
             };
 
             newWorkflowApplication.OnUnhandledException = delegate(WorkflowApplicationUnhandledExceptionEventArgs e)
@@ -134,6 +143,8 @@ namespace Public.WindowsWorkflows.Research
                     e.ExceptionSource.DisplayName, 
                     e.ExceptionSourceInstanceId);
 
+                syncEvent.Set();
+
                 // Instruct the runtime to terminate the workflow.
                 // The other viable choices here are 'Abort' or 'Cancel'
                 return UnhandledExceptionAction.Terminate;
@@ -143,7 +154,7 @@ namespace Public.WindowsWorkflows.Research
             newWorkflowApplication.Run();
 
             // Because a new thread is spawned, we need to wait for it to complete before we can move on.
-            System.Threading.Thread.Sleep(3000);
+            syncEvent.WaitOne();
         }
 
         /// <summary>
