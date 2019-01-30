@@ -7,8 +7,11 @@ Contains Activities that can be invoked via Windows Workflow Foundation.
 ### DateTimeActivity
 An example Activity that returns the current DateTime in UTC.
 
+### PingActivity
+An example Activity that returns whether a given IP address is reachable via Ping.
+
 ### WebStringActivity
-An example Activity that returns a string from a WebRequest to LinkedIn's tracking url.
+An example Activity that returns a string from a WebRequest to a given url.
 
 ## Public.Debugging.Research
 The module is written to be directly imported into PowerShell.
@@ -173,20 +176,40 @@ KALLIX       5.05:39:51.6560000
 Demonstrates invoking Windows Workflows (InvokeWindowsWorkflow.cs) via PowerShell.
 
 ```
-Invoke-WindowsWorkflow -AssemblyPath "D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.Activities.Research\bin\Debug\Public.Activities.Research.dll" -Type "Public.Activities.Research.DateTimeActivity"
-Starting Workflow: c4baa5b5-7f1d-4310-800e-bb3b9a5e4806
-Workflow c4baa5b5-7f1d-4310-800e-bb3b9a5e4806 Completed at 26/01/2019 23:15:33.
-Workflow c4baa5b5-7f1d-4310-800e-bb3b9a5e4806 Unloaded.
+Import-Module "D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.WindowsWorkflows.Research\bin\x64\Debug\Public.WindowsWorkflows.Research.dll" -Verbose
+VERBOSE: Loading module from path 'D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.WindowsWorkflows.Research\bin\x64\Debug\Public.WindowsWorkflows.Research.dll'.
+VERBOSE: Importing cmdlet 'Invoke-WindowsWorkflow'.
+
+Invoke-WindowsWorkflow -Type "Public.Activities.Research.DateTimeActivity"
+Starting Workflow: 89fe94eb-6ff3-4d65-a3f2-4e410f83163e
+Workflow 89fe94eb-6ff3-4d65-a3f2-4e410f83163e Completed at 30/01/2019 10:46:43.
+Workflow 89fe94eb-6ff3-4d65-a3f2-4e410f83163e Unloaded.
 Result:
-
-Saturday 26 January 2019 23:15:33
+01/30/2019 10:46:43
 ```
 
 ```
-Invoke-WindowsWorkflow -AssemblyPath "D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.Activities.Research\bin\Debug\Public.Activities.Research.dll" -Type "Public.Activities.Research.WebStringActivity"
-Starting Workflow: 69ac1093-9d91-433a-af54-6fe827c3bd60
-Workflow 69ac1093-9d91-433a-af54-6fe827c3bd60 Completed at 26/01/2019 23:13:50.
-Workflow 69ac1093-9d91-433a-af54-6fe827c3bd60 Unloaded.
+Import-Module "D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.WindowsWorkflows.Research\bin\x64\Debug\Public.WindowsWorkflows.Research.dll" -Verbose
+VERBOSE: Loading module from path 'D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.WindowsWorkflows.Research\bin\x64\Debug\Public.WindowsWorkflows.Research.dll'.
+VERBOSE: Importing cmdlet 'Invoke-WindowsWorkflow'.
+
+Invoke-WindowsWorkflow -Type "Public.Activities.Research.PingActivity" -PassedValue "127.0.0.1"
+Starting Workflow: b3f048ed-f527-430d-bee3-8b4125586380
+Workflow b3f048ed-f527-430d-bee3-8b4125586380 Completed at 30/01/2019 10:48:24.
+Workflow b3f048ed-f527-430d-bee3-8b4125586380 Unloaded.
+Result:
+True
+```
+
+```
+Import-Module "D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.WindowsWorkflows.Research\bin\x64\Debug\Public.WindowsWorkflows.Research.dll" -Verbose
+VERBOSE: Loading module from path 'D:\Code\felsokning\CSharp\CSharp\Public.CSharp.Research\Public.WindowsWorkflows.Research\bin\x64\Debug\Public.WindowsWorkflows.Research.dll'.
+VERBOSE: Importing cmdlet 'Invoke-WindowsWorkflow'.
+
+Invoke-WindowsWorkflow -Type "Public.Activities.Research.WebStringActivity" -PassedValue "http://www.linkedin.com/li/track/"
+Starting Workflow: 6a45aef6-6a2b-4a0f-af89-e0289087b7ac
+Workflow 6a45aef6-6a2b-4a0f-af89-e0289087b7ac Completed at 30/01/2019 10:45:29.
+Workflow 6a45aef6-6a2b-4a0f-af89-e0289087b7ac Unloaded.
 Result:
 GOOD
 ```
