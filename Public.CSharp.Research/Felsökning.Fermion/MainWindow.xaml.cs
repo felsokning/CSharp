@@ -337,7 +337,7 @@ namespace Felsökning.Fermion
         }
 
         /// <summary>
-        /// Method to Update the WPF Form.
+        ///     Method to Update the WPF Form.
         /// </summary>
         /// <param name="srvInfo">Info from the Entities Class</param>
         private void UpdateE15CafeInformation(Entities.E15CafeServerInformation srvInfo)
@@ -353,7 +353,7 @@ namespace Felsökning.Fermion
         }
 
         /// <summary>
-        /// OnLoad renders the SplashScreen and fetches the initial system name.
+        ///     OnLoad renders the SplashScreen and fetches the initial system name.
         /// </summary>
         /// <returns>String of systemName</returns>
         private async Task<string> MainWindow_OnLoad()
@@ -376,7 +376,7 @@ namespace Felsökning.Fermion
             {
                 Trace.TraceInformation("Caught the scenario where we can't find a system name.");
                 Trace.Flush();
-                string err = "Shiz done goofed, somewherez... Email: johnbai@exchange.microsoft.com to figure this one out.";
+                string err = "System name was already populated at OnLoad. Suspect something nefarious, somwhere, but we don't know where.";
                 ErrorQueue.Enqueue(err);
                 if (ErrorQueue.Count > 0)
                 {
@@ -913,7 +913,7 @@ namespace Felsökning.Fermion
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MainWindow"/> class.
+        ///     Initializes a new instance of the <see cref="MainWindow"/> class.
         /// </summary>
         public MainWindow()
         {
@@ -953,6 +953,11 @@ namespace Felsökning.Fermion
 
         }
 
+        /// <summary>
+        ///     Method for when the mouse enters the control's area.
+        /// </summary>
+        /// <param name="sender">object sender</param>
+        /// <param name="e">The related mouse event arguments.</param>
         [STAThread]
         private void Row3Title_MouseEnter(object sender, MouseEventArgs e)
         {
