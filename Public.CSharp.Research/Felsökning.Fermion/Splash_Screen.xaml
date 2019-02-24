@@ -1,0 +1,10 @@
+﻿<Window x:Class="Felsökning.Fermion.Splash_Screen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Splash_Screen" Height="683" Width="715" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" 
+        WindowStyle="None" Background="Transparent"  AllowsTransparency="True">
+    <Grid Background="Transparent">
+        <Image Source="Bio2.png" />
+    </Grid>
+</Window>

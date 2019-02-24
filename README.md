@@ -1,6 +1,11 @@
 # CSharp
 This is C# code (often a DLL) for reference/example.
 
+## Felsökning.Fermion
+A [Windows Presentation Foundation](https://docs.microsoft.com/en-us/previous-versions/dotnet/articles/aa663364(v=msdn.10)) application to show real-time counters, relevant to Exchange 2010 & Exchange 2013 (a.k.a.: E14 & E15). The application can query for the counters either locally or remotely. It will also generate a window for details of the WorkingSet (x64), when the mouse hovers over "Memory" on the application. Error handling is built into the application and depends on queuing to queue and dequeue the exceptions and then render them to the end-user.
+
+![Screenshot of Fermion](/ScreenShots/Fermion.png?raw=true "Fermion")
+
 ## Public.Activities.Research
 Contains Activities that can be invoked via Windows Workflow Foundation.
 

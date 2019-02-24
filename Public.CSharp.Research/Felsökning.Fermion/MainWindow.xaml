@@ -1,0 +1,107 @@
+﻿<Window x:Class="Felsökning.Fermion.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Perfinator" Width="805" Background="Transparent" 
+        Foreground="Transparent" AllowsTransparency="True" WindowStyle="None">
+    <DockPanel>
+        <Grid x:Name="ZeBody" Width="665" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <!-- 0 -->
+                <!-- Title -->
+                <RowDefinition Height="Auto"/>
+                <!-- 1 -->
+                <RowDefinition Height="15"/>
+                <!-- 2 -->
+                <RowDefinition Height="15"/>
+                <!-- 3 -->
+                <RowDefinition Height="15"/>
+                <!-- 4 -->
+                <RowDefinition Height="15"/>
+                <!-- 5 -->
+                <RowDefinition Height="15"/>
+                <!-- 6 -->
+                <RowDefinition Height="15"/>
+                <!-- 7 -->
+                <RowDefinition Height="15"/>
+                <!-- 8 -->
+                <RowDefinition Height="15"/>
+                <!-- 9 -->
+                <RowDefinition Height="15"/>
+                <!-- 10 -->
+                <RowDefinition Height="15"/>
+                <!-- 11 -->
+                <RowDefinition Height="15"/>
+                <!-- 12 -->
+                <RowDefinition Height="15"/>
+                <!-- 13 -->
+                <RowDefinition Height="15"/>
+                <!-- 14 -->
+                <RowDefinition Height="15"/>
+                <!-- 15 -->
+                <RowDefinition Height="15"/>
+                <!-- 16 -->
+                <RowDefinition Height="15"/>
+                <!-- 17 -->
+                <RowDefinition Height="15"/>
+                <!-- 18 -->
+                <RowDefinition Height="15"/>
+                <!-- 19 -->
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.ColumnSpan="4" x:Name="TitleBar" Background="#002050" MouseDown="TitleBar_MouseDown_1" Opacity="1000"/>
+            <Grid x:Name="Body" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="19" Background="#2b2b2b" Opacity="0.7" />
+            <TextBlock x:Name="ProgName" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" FontStyle="Italic" Grid.Row="0" Grid.Column="1" Opacity="100" Foreground="White"/>
+            <Button x:Name="SystemName" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="0" Grid.Column="2" Opacity="100" Background="Transparent" Foreground="White" Width="310" BorderBrush="Transparent" Click="SystemName_Click_1"/>
+            <TextBox x:Name="SystemChange" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="0" Grid.Column="2" Opacity="100" Background="White" Foreground="Gray" BorderBrush="Transparent" Width="310" KeyDown="SystemChange_KeyDown_1"/>
+            <TextBlock x:Name="Row2Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="2" Grid.Column="1" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row2Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="2" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row3Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="3" Grid.Column="1" Opacity="100" Foreground="White" MouseEnter="Row3Title_MouseEnter" />
+            <TextBlock x:Name="Row3Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="3" Grid.Column="2" Opacity="100" Foreground="White" />
+            <TextBlock x:Name="Row4Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="4" Grid.Column="1" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row4Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="4" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row5Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="5" Grid.Column="1" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row5Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="5" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row6Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="6" Grid.Column="1" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row6Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="6" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row7Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="7" Grid.Column="1" Opacity="100" Foreground="White" />
+            <TextBlock x:Name="Row7Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="7" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row8Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="8" Grid.Column="1" Opacity="100" Foreground="White" />
+            <TextBlock x:Name="Row8Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="8" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row9Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="9" Grid.Column="1" Opacity="100" Foreground="White" />
+            <TextBlock x:Name="Row9Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="9" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row10Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="10" Grid.Column="1" Opacity="100" Foreground="White" />
+            <TextBlock x:Name="Row10Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="10" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row11Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="11" Grid.Column="1" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row11Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="11" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row12Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="12" Grid.Column="1" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row12Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="12" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row13Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="13" Grid.Column="1" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row13Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="13" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row14Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="14" Grid.Column="1" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row14Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="14" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row15Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="15" Grid.Column="1" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row15Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="15" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row16Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="16" Grid.Column="1" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row16Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="16" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row17Title" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="17" Grid.Column="1" Opacity="100" Foreground="White"/>
+            <TextBlock x:Name="Row17Value" HorizontalAlignment="Right" TextWrapping="NoWrap" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="14" Grid.Row="17" Grid.Column="2" Opacity="100" Foreground="White"/>
+            <Button x:Name="Closer" Grid.Row="0" Grid.Column="3" Background="Transparent" Width="25" Height="40" Click="Closer_Click" BorderBrush="Transparent" />
+            <Button x:Name="SpeedInfoz" Grid.Row="0" Grid.Column="0" Background="Transparent" Width="25" Height="40" Click="SpeedInfoz_Click" BorderBrush="Transparent"/>
+            <StackPanel x:Name="TheExpanderControlHolder" Grid.Row="1" Grid.ColumnSpan="4" Background="#ADAFB2">
+                <Expander x:Name="CounterSelector" Header="Select Counter Set" ExpandDirection="Down" Background="#ADAFB2" Foreground="White" BorderThickness="0" Collapsed="CounterSelector_Collapsed_1">
+                    <StackPanel Height="Auto">
+                        <CheckBox Margin="4" x:Name="E15_Cafe" Content="Exchange 2013 Client Access Server" Background="White" Foreground="White"/>
+                        <CheckBox Margin="4" x:Name="E15_BackEnd" Content="Exchange 2013 Mailbox" Background="White" Foreground="White"/>
+                        <CheckBox Margin="4" x:Name="E14" Content="Exchange 2010" Background="White" Foreground="White" IsChecked="True"/>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>
