@@ -7,7 +7,7 @@ namespace Public.Exchange.Research.Objects
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-
+    
     /// <summary>
     ///     Initializes a new instance of the <see cref="TypeEnums"/> class.
     /// </summary>
@@ -17,15 +17,62 @@ namespace Public.Exchange.Research.Objects
     [SuppressMessage("ReSharper", "IdentifierTypo", Justification = "Naming convention was created by Microsoft.")]
     public class TypeEnums
     {
+        /// <summary>
+        ///    Flags for a mailbox move.
+        ///    Source: https://docs.microsoft.com/en-us/previous-versions/office/exchange-server-api/ff442933(v%3dexchg.150)
+        /// </summary>
+        [Flags]
+        public enum msExchangeMailboxMoveFlags
+        {
+            None = 0x00,
+            CrossOrg = 0x01,
+            IntraOrg = 0x02,
+            Push = 0x04,
+            Pull = 0x08,
+            Offline = 0x10,
+            Protected = 0x20,
+            RemoteLegacy = 0x40,
+            HighPriority = 0x80,
+            Suspend = 0x100,
+            SuspendWhenReadyToComplete = 0x200,
+            MoveOnlyPrimaryMailbox = 0x400,
+            MoveOnlyArchiveMailbox = 0x800,
+            TargetIsAggregatedMailbox = 0x1000,
+            Join = 0x2000,
+            Split  = 0x4000,
+            MoveOnlyAuxMailbox = 0x8000,
+            CrossTenant = 0x10000 | CrossOrg
+        }
+        
+        /// <summary>
+        ///    A value that indicates the status of a mailbox move.
+        ///    Source: https://docs.microsoft.com/en-us/previous-versions/office/exchange-server-api/ff438451(v%3dexchg.150)
+        /// </summary>
+        [Flags]
+        public enum msExchMailboxMoveStatus
+        {
+            None = 0,
+            Queued = 1,
+            InProgress = 2,
+            AutoSuspended = 3,
+            CompletionInProgress = 4,
+            Synced = 5,
+            Completed = 10,
+            CompletedWithWarning = 11,
+            Retrying = 15,
+            Suspended = 98,
+            Failed = 99
+        }
+        
         /// NOTE:
         ///     These enums are bitwise flags and, as such, can be stored as multi-valued via sums.
         ///     For more information on this, please see:
         ///     https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/enumeration-types#enumeration-types-as-bit-flags
         /// <summary>
-        ///     The possible values for the <see cref="MsExchRecipientDisplayType"/> property.
+        ///     The possible values for the <see cref="msExchRecipientDisplayType"/> property.
         /// </summary>
         [Flags]
-        public enum MsExchRecipientDisplayType
+        public enum msExchRecipientDisplayType
         {
             MailboxUser = 0,
             DistributionGroup = 1,
@@ -58,10 +105,10 @@ namespace Public.Exchange.Research.Objects
         }
 
         /// <summary>
-        ///     The possible values for the <see cref="MsExchangeRecipientTypeDetails"/> property.
+        ///     The possible values for the <see cref="msExchangeRecipientTypeDetails"/> property.
         /// </summary>
         [Flags]
-        public enum MsExchangeRecipientTypeDetails
+        public enum msExchangeRecipientTypeDetails
         {
             None = 0,
             UserMailbox = 1,
@@ -113,10 +160,10 @@ namespace Public.Exchange.Research.Objects
         }
 
         /// <summary>
-        ///     The possible values for the <see cref="MsExchRemoteRecipientType"/> property.
+        ///     The possible values for the <see cref="msExchRemoteRecipientType"/> property.
         /// </summary>
         [Flags]
-        public enum MsExchRemoteRecipientType
+        public enum msExchRemoteRecipientType
         {
             ProvisionedMailbox = 1,
             ProvisionedArchive = 2,
