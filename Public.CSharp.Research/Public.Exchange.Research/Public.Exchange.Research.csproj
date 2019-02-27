@@ -152,6 +152,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GetXRouteRefreshCookieValue.cs" />
     <Compile Include="InternalFactory.cs" />
     <Compile Include="Methods\ExtensionMethods.cs" />
     <Compile Include="Objects\Commands.cs" />

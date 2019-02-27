@@ -121,7 +121,22 @@ Debug-LiveProcess -Process 9992
 ```
 
 ## Public.Exchange.Research
-DLL meant to be imported into PowerShell via a PowerShell Script, which performs mass commands in parallel against an array of servers.
+Utilities meant to be consumed to assist with activities in administrating or troubleshooting Microsoft Exchange.
+
+### PublicFactory/InternalFactory
+Performs mass commands in parallel against an array of servers.
+
+### Get-XRouteRefreshCookie
+Obtains the value of the 'X-RouteRefreshCookie' contained in the HTTP headers from OWA.
+
+```
+Import-Module "C:\Code\felsökning\Public.CSharp.Research\Public.Exchange.Research\bin\x64\Debug\Public.Exchange.Research.dll" -Verbose
+VERBOSE: Loading module from path 'C:\Code\felsökning\Public.CSharp.Research\Public.Exchange.Research\bin\x64\Debug\Public.Exchange.Research.dll'.
+VERBOSE: Importing cmdlet 'Get-XRouteRefreshCookieValue'.
+
+Get-XRouteRefreshCookieValue -CookieValue "zoHNz87H0s7P0s/Jq87Lxc/PxczNgbe0z6+tz8y8vs/PxsmBqoGzlomatpuympKdmo2xnpKaxbSalouX0bOW2svPmJqSkp6TltGXlNrMvZiakpKek5bRl5TCu56Lnp2ejJq4ipabxcjJyZqdzJmd0srKzc7Sy8jJy9LHxpmd0p2bycrMzczMm87Hz9rLz5iakpKek5bRl5Tay8+ej5yPjZvPzdGPjZCb0ZCKi5OQkJTRnJCS2svPz7/OzM7HzMzPx8/Nx8vIyc3Oxsw="
+1~2018-10-06T14:00:32~HK0PR03CA0096~U~LiveIdMemberName:Keith.Li%40gemmali.hk%3Bgemmali.hk=DatabaseGuid:766eb3fb-5521-4764-89fb-bd653233d180%40gemmali.hk%40apcprd02.prod.outlook.com%400@131833080284762193
+```
 
 ## Public.ExtensionMethods.Research
 DLL/Class meant to be imported to extend types in .NET
