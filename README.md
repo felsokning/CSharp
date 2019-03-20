@@ -2,7 +2,7 @@
 This is C# code (often a DLL) for reference/example.
 
 ## Felsökning.Services.ShadowService
-A Windows Service to copy files from a source destination to multiple target destinations and encrypting, if so configured. 
+A Windows Service to copy files from a source destination to multiple target destinations (configurable via App.Config) and encrypting them using the certificate[s] owned by the service's LSA account (if so configured in the App.Config). 
 
 **WARNING:** The files are encrypted using EFS via the LSA (Local Service Account) and, as such, the encryption key[s] are currently not exportable (as far as I'm aware). You run the risk of data loss, if the host is ever taken down permanently. I have plans to add a feature to unencrypt the files but this has some logical hurdles that need conquering, first, and I - just as a forewarning - it's a low priority and I mightn't be able to do that by myself.
 
