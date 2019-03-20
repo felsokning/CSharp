@@ -1,6 +1,11 @@
 # CSharp
 This is C# code (often a DLL) for reference/example.
 
+##Felsökning.Services.ShadowService
+A Windows Service to copy files from a source destination to multiple target destinations and encrypting, if so configured. 
+
+**WARNING:** The files are encrypted using EFS via the LSA (Local Service Account) and, as such, the encryption key[s] are currently not exportable (as far as I'm aware). You run the risk of data loss, if the host is ever taken down permanently. I have plans to add a feature to unencrypt the files but this has some logical hurdles that need conquering, first, and I - just as a forewarning - it's a low priority and I mightn't be able to do that by myself.
+
 ## Felsökning.Fermion
 A [Windows Presentation Foundation](https://docs.microsoft.com/en-us/previous-versions/dotnet/articles/aa663364(v=msdn.10)) application to show real-time counters, relevant to Exchange 2010 & Exchange 2013 (a.k.a.: E14 & E15). The application can query for the counters either locally or remotely. It will also generate a window for details of the WorkingSet (x64), when the mouse hovers over "Memory" on the application. Error handling is built into the application and depends on queuing to queue and dequeue the exceptions and then render them to the end-user.
 

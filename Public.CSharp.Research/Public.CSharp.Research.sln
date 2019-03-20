@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Public.Activities.Research"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Felsökning.Fermion", "Felsökning.Fermion\Felsökning.Fermion.csproj", "{7A6A5010-5581-4FBD-9030-3A26C2B57638}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Felsökning.Services.ShadowService", "Felsökning.Services.ShadowService\Felsökning.Services.ShadowService.csproj", "{BEB210D8-261D-45B8-9F33-CEE09116F337}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,14 @@ Global
 		{7A6A5010-5581-4FBD-9030-3A26C2B57638}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7A6A5010-5581-4FBD-9030-3A26C2B57638}.Release|x64.ActiveCfg = Release|Any CPU
 		{7A6A5010-5581-4FBD-9030-3A26C2B57638}.Release|x64.Build.0 = Release|Any CPU
+		{BEB210D8-261D-45B8-9F33-CEE09116F337}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEB210D8-261D-45B8-9F33-CEE09116F337}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEB210D8-261D-45B8-9F33-CEE09116F337}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BEB210D8-261D-45B8-9F33-CEE09116F337}.Debug|x64.Build.0 = Debug|Any CPU
+		{BEB210D8-261D-45B8-9F33-CEE09116F337}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEB210D8-261D-45B8-9F33-CEE09116F337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEB210D8-261D-45B8-9F33-CEE09116F337}.Release|x64.ActiveCfg = Release|Any CPU
+		{BEB210D8-261D-45B8-9F33-CEE09116F337}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
